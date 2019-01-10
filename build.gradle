@@ -1,0 +1,30 @@
+//plugins 的上面只允许 buildscript{} 和 plugins{} 两种
+plugins {
+    id "com.arenagod.gradle.MybatisGenerator" version "1.4" //gradle提供的mybatis generator插件
+}
+
+group 'gradle'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+configurations {
+    mybatisGenerator
+}
+
+mybatisGenerator {
+    verbose = true
+    configFile = 'src/main/resources/generatorConfig.xml'
+}
+
+repositories {
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public'
+    }
+}
+
+dependencies {
+    compile 'mysql:mysql-connector-java:5.1.6'
+}
